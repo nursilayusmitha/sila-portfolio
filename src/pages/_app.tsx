@@ -13,10 +13,10 @@ export default function App({ Component, pageProps }: AppProps) {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <meta
           name="description"
-          content="Designs coded with love, pixels, and a dash of caffeine — welcome to Nursila Yusmitha’s world."
+          content="Designs coded with love, pixels, and a dash of caffeine — welcome to Nursila Yusmitha&apos;s world."
         />
         <title>Nursila Yusmitha | Portfolio</title>
       </Head>

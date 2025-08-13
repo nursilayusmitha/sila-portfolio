@@ -5,6 +5,18 @@ import SVGIcon from "./ui/SVGIcon";
 import { faqData } from "@/data";
 import faq from "../icons/faq.svg";
 
+// Pindahkan videoSources ke luar komponen agar stabil
+const videoSources = {
+  click: "https://nursilayusmitha.github.io/my-assets/Div/click.mp4",
+  load: "https://nursilayusmitha.github.io/my-assets/Div/load.mp4",
+  first: "https://nursilayusmitha.github.io/my-assets/Div/first.mp4",
+  second: "https://nursilayusmitha.github.io/my-assets/Div/second.mp4",
+  last: "https://nursilayusmitha.github.io/my-assets/Div/last.mp4"
+};
+
+// Tipe khusus untuk state video
+type VideoState = keyof typeof videoSources;
+
 // Komponen untuk item FAQ dengan teks responsif dan dark mode
 const FaqItem = ({ 
   question, 
@@ -135,23 +147,18 @@ const Faq = () => {
   }, []);
 
   // State untuk animasi video interaktif
-  const [videoState, setVideoState] = useState<
-    'click' | 'load' | 'first' | 'second' | 'last'
-  >('click');
+  const [videoState, setVideoState] = useState<VideoState>('click');
   const [isPlaying, setIsPlaying] = useState(false);
   
   // Ref untuk semua video dan container
-  const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+  const videoRefs = useRef<Record<VideoState, HTMLVideoElement | null>>({
+    click: null,
+    load: null,
+    first: null,
+    second: null,
+    last: null
+  });
   const videoContainerRef = useRef<HTMLDivElement>(null);
-
-  // Video sources
-  const videoSources = {
-    click: "https://nursilayusmitha.github.io/my-assets/Div/click.mp4",
-    load: "https://nursilayusmitha.github.io/my-assets/Div/load.mp4",
-    first: "https://nursilayusmitha.github.io/my-assets/Div/first.mp4",
-    second: "https://nursilayusmitha.github.io/my-assets/Div/second.mp4",
-    last: "https://nursilayusmitha.github.io/my-assets/Div/last.mp4"
-  };
 
   // Preload semua video secara agresif
   useEffect(() => {
@@ -162,12 +169,22 @@ const Faq = () => {
       video.load();
       
       // Simpan referensi untuk akses langsung
-      videoRefs.current[key] = video;
+      videoRefs.current[key as VideoState] = video;
     });
-  }, []);
+
+    // Cleanup function
+    return () => {
+      Object.values(videoRefs.current).forEach(video => {
+        if (video) {
+          video.pause();
+          video.remove();
+        }
+      });
+    };
+  }, [videoSources]); // Tambahkan videoSources sebagai dependency
 
   // Fungsi bantu untuk state berikutnya
-  const getNextState = (current: string): string => {
+  const getNextState = (current: VideoState): VideoState => {
     switch (current) {
       case 'click': return 'load';
       case 'load': return 'first';
@@ -208,7 +225,7 @@ const Faq = () => {
   };
 
   // Handler ketika video selesai diputar
-  const handleVideoEnded = (key: string) => {
+  const handleVideoEnded = (key: VideoState) => {
     if (key === 'last') {
       // Setelah last selesai, kembali ke state click
       setVideoState('click');
@@ -278,7 +295,9 @@ const Faq = () => {
               <video
                 key={key}
                 ref={el => {
-                  if (el) videoRefs.current[key] = el;
+                  if (el) {
+                    videoRefs.current[key as VideoState] = el;
+                  }
                 }}
                 className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-200 ease-in-out ${
                   videoState === key ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -288,12 +307,12 @@ const Faq = () => {
                 playsInline
                 autoPlay={key === 'click'}
                 loop={key === 'click'}
-                onEnded={() => handleVideoEnded(key)}
+                onEnded={() => handleVideoEnded(key as VideoState)}
                 preload="auto"
                 onCanPlayThrough={() => {
                   // Pre-buffer video berikutnya untuk transisi lebih halus
                   if (key !== videoState) {
-                    const video = videoRefs.current[key];
+                    const video = videoRefs.current[key as VideoState];
                     if (video) {
                       video.play().then(() => video.pause());
                     }

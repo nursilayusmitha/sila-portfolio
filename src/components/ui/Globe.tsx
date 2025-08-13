@@ -245,6 +245,21 @@ export function Globe({ globeConfig, data }: WorldProps) {
   );
 }
 
+
+// TAMBAHKAN FUNGSI RESIZE HANDLER BARU
+function ResizeHandler() {
+  const { size, camera } = useThree();
+  
+  useEffect(() => {
+    if (camera instanceof PerspectiveCamera) {
+      camera.aspect = size.width / size.height;
+      camera.updateProjectionMatrix();
+    }
+  }, [size, camera]);
+
+  return null;
+}
+
 export function WebGLRendererConfig() {
   const { gl, size } = useThree();
 
@@ -252,7 +267,7 @@ export function WebGLRendererConfig() {
     gl.setPixelRatio(window.devicePixelRatio);
     gl.setSize(size.width, size.height);
     gl.setClearColor(0xffaaff, 0);
-  }, []);
+  }, [gl, size]); // ✅ Tambahkan gl dan size sebagai dependency
 
   return null;
 }
@@ -264,6 +279,7 @@ export function World(props: WorldProps) {
   return (
     <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
       <WebGLRendererConfig />
+      <ResizeHandler /> {/* ✅ Tambahkan komponen resize handler */}
       <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
       <directionalLight
         color={globeConfig.directionalLeftLight}
