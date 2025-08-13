@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { IoCopyOutline } from "react-icons/io5";
-import Lottie from "react-lottie";
+import Lottie from "lottie-react";
 import { cn } from "@/utils/cn";
 import { BackgroundGradientAnimation } from "./GradientBg";
 import animationData from "@/data/confetti.json";
@@ -359,34 +359,31 @@ export const BentoGridItem = ({
       </div>
 
       <div className="relative">
-    <div className="absolute inset-0 flex items-center justify-center">
-      <Lottie
-        key={lottieKey}
-        options={{
-          loop: false,
-          autoplay: true,
-          animationData: animationData,
-          rendererSettings: {
-            preserveAspectRatio: "xMidYMid slice",
-          },
-        }}
-        height={200}
-        width={400}
-      />
-    </div>
-    <div className="576:-mt-5 1330:mt-0 relative z-10">
-      <MagicButton
-        title={copied ? "Email is Copied!" : "Copy my email address"}
-        icon={<IoCopyOutline />}
-        position="left"
-        handleClick={handleCopy}
-        otherClasses="!bg-[#161A31]"
-      />
-    </div>
-  </div>
-</div>
-  </>
-)}
+            {/* PERBAIKAN UTAMA: Ganti cara penggunaan Lottie */}
+            {copied && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Lottie
+                  key={lottieKey}
+                  animationData={animationData}
+                  loop={false}
+                  autoplay={true}
+                  style={{ width: 400, height: 200 }}
+                />
+              </div>
+            )}
+            <div className="576:-mt-5 1330:mt-0 relative z-10">
+              <MagicButton
+                title={copied ? "Email is Copied!" : "Copy my email address"}
+                icon={<IoCopyOutline />}
+                position="left"
+                handleClick={handleCopy}
+                otherClasses="!bg-[#161A31]"
+              />
+            </div>
+          </div>
+        </div>
+      </>
+    )}
 
           </div>
         </div>
