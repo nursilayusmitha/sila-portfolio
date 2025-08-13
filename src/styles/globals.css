@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+@font-face {
+  font-family: "Pixelify Sans";
+  src: url("../../public/fonts/PixelifySans-Bold.otf");
+}
+
+@font-face {
+  font-family: "Inter Regular";
+  src: url("../../public/fonts/Inter_18pt-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Inter Medium";
+  src: url("../../public/fonts/Inter_18pt-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Regular";
+  src: url("../../public/fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins Regular";
+  src: url("../../public/fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins SemiBold";
+  src: url("../../public/fonts/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Volkhov";
+  src: url("../../public/fonts/Volkhov-Regular.ttf");
+}
+
+@font-face {
+  font-family: "VT323";
+  src: url("../../public/fonts/VT323-Regular.ttf");
+}
+
+@layer utilities {
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+    .animation-delay-4000 {
+      animation-delay: 4s;
+    }
+  }
+
+  .mask{
+
+    mask-image: url('../../public/mask.svg');
+
+    mask-repeat: no-repeat;
+
+    mask-size: 40px;
+
+    background: #ec4e39;
+
+    position: absolute;
+
+    color: black;
+
+  }
+
+  .globe-container {
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(100,149,237,0.1);
+}
+
+/* Di file global.css */
+.animate-scroll-tech {
+  animation: scroll-tech 10s linear infinite;
+}
+
+/* Keep existing .scrollbar-hide rules */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* UPDATED ANIMATION WITH FORCED GPU ACCELERATION */
+@keyframes scroll-tech {
+  0% {
+    transform: translate3d(0, 0, 0); /* GPU acceleration */
+  }
+  100% {
+    transform: translate3d(0, -50%, 0); /* GPU acceleration */
+  }
+}
+
+.tech-scroll-container {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  animation-fill-mode: both;
+  animation-delay: 0.1s; /* Small delay to ensure render */
+}
+
+
+.bento-grid {
+  display: grid;
+  gap: 0.75rem; /* default = gap-3 */
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "id1"
+    "id2"
+    "id3"
+    "id4"
+    "id6";
+}
+
+/* Small Tablet: 576–767px */
+@media (min-width: 576px) and (max-width: 767.99px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    grid-template-areas:
+      "id1 id1"
+      "id2 id2"
+      "id3 id3"
+      "id4 id6";
+  }
+}
+
+/* Medium Tablet: 768–899px */
+@media (min-width: 768px) and (max-width: 999.99px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem; /* sm:gap-4 */
+    grid-template-areas:
+      "id1 id1"
+      "id2 id3"
+      "id4 id6";
+  }
+}
+
+/* Desktop: ≥1000px (sudah benar) */
+@media (min-width: 1000px) {
+  .bento-grid {
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: auto auto auto;
+    gap: 2rem;
+    grid-template-areas:
+      "id1 id2"
+      "id1 id3"
+      "id4 id6";
+  }
+}
+
+/* Item positioning */
+.bento-item-1 { grid-area: id1; }
+.bento-item-2 { grid-area: id2; }
+.bento-item-3 { grid-area: id3; }
+.bento-item-4 { grid-area: id4; }
+.bento-item-6 { grid-area: id6; }
+
+@layer utilities {
+  .mask-gradient {
+    mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation-name: scroll;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
