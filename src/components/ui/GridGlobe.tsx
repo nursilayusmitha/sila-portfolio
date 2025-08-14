@@ -10,33 +10,54 @@ const World = dynamic(() => import("./Globe").then((m) => m.World), {
 const GridGlobe = () => {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
-  
-  // Panggil semua useMemo SEBELUM blok kondisional
-  const darkMode = useMemo(() => resolvedTheme === 'dark', [resolvedTheme]);
-  const globeConfig = useMemo(() => ({
-  pointSize: 4,
-  globeColor: darkMode ? "#062056" : "#0f8fff", // Warna biru yang diinginkan: #0f8fff
-  showAtmosphere: true,
-  atmosphereColor: darkMode ? "#a5b4fc" : "rgba(135, 206, 250, 0.4)", // Biru muda transparan
-  atmosphereAltitude: 0.2,
-  emissive: darkMode ? "#062056" : "#0f8fff", // Sama dengan globeColor
-  emissiveIntensity: darkMode ? 0.1 : 0.7, // Lebih tinggi untuk lebih terang
-  shininess: darkMode ? 0.9 : 0.88,
-  polygonColor: darkMode 
-    ? "rgba(255,255,255,0.7)" 
-    : "rgba(31, 41, 55, 0.5)", // Gray 800 (#1f2937) dengan opacity 70%
-  ambientLight: darkMode ? "#38bdf8" : "#d6eaff", // Biru sangat muda
-  directionalLeftLight: darkMode ? "#ffffff" : "#ffffff", // Putih
-  directionalTopLight: darkMode ? "#ffffff" : "#ffffff", // Putih
-  pointLight: darkMode ? "#ffffff" : "#ffffff", // Putih
-  arcTime: 1000,
-  arcLength: 0.9,
-  rings: 1,
-  maxRings: 3,
-  initialPosition: { lat: 22.3193, lng: 114.1694 },
-  autoRotate: true,
-  autoRotateSpeed: 0.5,
-}), [darkMode]);
+
+  // ✅ State untuk scale globe
+  const [globeScale, setGlobeScale] = useState(1);
+
+  // ✅ Update scale berdasarkan ukuran layar
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width >= 900) setGlobeScale(1);
+      else if (width >= 768) setGlobeScale(0.8);
+      else if (width >= 500) setGlobeScale(0.6);
+      else setGlobeScale(0.45);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const darkMode = useMemo(() => resolvedTheme === "dark", [resolvedTheme]);
+  const globeConfig = useMemo(
+    () => ({
+      pointSize: 4,
+      globeColor: darkMode ? "#062056" : "#0f8fff",
+      showAtmosphere: true,
+      atmosphereColor: darkMode
+        ? "#a5b4fc"
+        : "rgba(135, 206, 250, 0.4)",
+      atmosphereAltitude: 0.2,
+      emissive: darkMode ? "#062056" : "#0f8fff",
+      emissiveIntensity: darkMode ? 0.1 : 0.7,
+      shininess: darkMode ? 0.9 : 0.88,
+      polygonColor: darkMode
+        ? "rgba(255,255,255,0.7)"
+        : "rgba(31, 41, 55, 0.5)",
+      ambientLight: darkMode ? "#38bdf8" : "#d6eaff",
+      directionalLeftLight: "#ffffff",
+      directionalTopLight: "#ffffff",
+      pointLight: "#ffffff",
+      arcTime: 1000,
+      arcLength: 0.9,
+      rings: 1,
+      maxRings: 3,
+      initialPosition: { lat: 22.3193, lng: 114.1694 },
+      autoRotate: true,
+      autoRotateSpeed: 0.5,
+    }),
+    [darkMode]
+  );
 
 // Dots warna gelap (Gray 800)
 const colors = useMemo(() => darkMode 
@@ -416,15 +437,14 @@ const arcColors = useMemo(() => darkMode
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
+  if (!mounted) return null;
 
   return (
     <div className="absolute inset-0 w-full h-full globe-container">
-      <World 
-        data={sampleArcs} 
-        globeConfig={globeConfig} 
+      <World
+        data={sampleArcs}
+        globeConfig={globeConfig}
+        globeScale={globeScale} // ✅ Kirim ke World
         key={darkMode ? "dark" : "light"}
       />
     </div>
