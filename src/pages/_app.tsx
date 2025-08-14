@@ -4,6 +4,7 @@ import { ScrollProvider } from "@/contexts/ActiveSectionContext";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react"; // ✅ gunakan /react, bukan /next
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider attribute="class" defaultTheme="dark">
         <ScrollProvider>
           <Component {...pageProps} />
+          <Analytics /> {/* ✅ panggil di sini */}
         </ScrollProvider>
       </ThemeProvider>
     </>
