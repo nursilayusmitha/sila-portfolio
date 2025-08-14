@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import dynamic from "next/dynamic";
 import { useTheme } from "next-themes";
 
@@ -10,11 +10,10 @@ const World = dynamic(() => import("./Globe").then((m) => m.World), {
 const GridGlobe = () => {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
+  const canvasRef = useRef<HTMLDivElement>(null); // wrapper utk canvas
 
-  // ✅ State untuk scale globe
   const [globeScale, setGlobeScale] = useState(1);
 
-  // ✅ Update scale berdasarkan ukuran layar
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -34,9 +33,7 @@ const GridGlobe = () => {
       pointSize: 4,
       globeColor: darkMode ? "#062056" : "#0f8fff",
       showAtmosphere: true,
-      atmosphereColor: darkMode
-        ? "#a5b4fc"
-        : "rgba(135, 206, 250, 0.4)",
+      atmosphereColor: darkMode ? "#a5b4fc" : "rgba(135, 206, 250, 0.4)",
       atmosphereAltitude: 0.2,
       emissive: darkMode ? "#062056" : "#0f8fff",
       emissiveIntensity: darkMode ? 0.1 : 0.7,
@@ -52,32 +49,19 @@ const GridGlobe = () => {
       arcLength: 0.9,
       rings: 1,
       maxRings: 3,
-      initialPosition: { lat: 22.3193, lng: 114.1694 },
       autoRotate: true,
       autoRotateSpeed: 0.5,
     }),
     [darkMode]
   );
 
-// Dots warna gelap (Gray 800)
-const colors = useMemo(() => darkMode 
-  ? ["#06b6d4", "#3b82f6", "#6366f1"] // Warna untuk dark mode
-  : ["#1f2937", "#1f2937", "#1f2937"], // Gray 800 untuk semua dots di light mode
-  [darkMode]
-);
-
-// Warna garis (arcs) warna-warni cerah non-biru
-const arcColors = useMemo(() => darkMode 
-  ? ["#06b6d4", "#3b82f6", "#6366f1"]
-  : [
-      "#FF5252", // Merah cerah
-      "#4CAF50", // Hijau cerah
-      "#FFD600", // Kuning cerah
-      "#FF9800", // Oranye cerah
-      "#9C27B0"  // Ungu cerah
-    ],
-  [darkMode]
-);
+  const arcColors = useMemo(
+    () =>
+      darkMode
+        ? ["#06b6d4", "#3b82f6", "#6366f1"]
+        : ["#FF5252", "#4CAF50", "#FFD600", "#FF9800", "#9C27B0"],
+    [darkMode]
+  );
 
   const sampleArcs = useMemo(() => [
     {
@@ -431,22 +415,50 @@ const arcColors = useMemo(() => darkMode
       arcAlt: 0.3,
       color: arcColors[Math.floor(Math.random() * (arcColors.length - 1))],
     },
-  ], [arcColors]);
+  ],
+    [arcColors]
+  );
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // ✅ fungsi forward event overlay → canvas
+  const forwardEvent = (e: React.PointerEvent) => {
+    const canvas = canvasRef.current?.querySelector("canvas");
+    if (!canvas) return;
+    const evt = new PointerEvent(e.type, e.nativeEvent);
+    canvas.dispatchEvent(evt);
+  };
+
   if (!mounted) return null;
 
   return (
-    <div className="absolute inset-0 w-full h-full globe-container">
-      <World
-        data={sampleArcs}
-        globeConfig={globeConfig}
-        globeScale={globeScale} // ✅ Kirim ke World
-        key={darkMode ? "dark" : "light"}
-      />
+    <div className="absolute inset-0 w-full h-full">
+      {/* wrapper canvas */}
+      <div ref={canvasRef} className="absolute inset-0">
+        <World
+          data={sampleArcs}
+          globeConfig={globeConfig}
+          globeScale={globeScale}
+          key={darkMode ? "dark" : "light"}
+        />
+      </div>
+
+      {/* ✅ Overlay bundar yang pass event */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div
+          className="rounded-full cursor-grab active:cursor-grabbing"
+          style={{
+            width: `${globeScale * 500}px`,
+            height: `${globeScale * 500}px`,
+          }}
+          onPointerDown={forwardEvent}
+          onPointerMove={forwardEvent}
+          onPointerUp={forwardEvent}
+          onPointerCancel={forwardEvent}
+        />
+      </div>
     </div>
   );
 };

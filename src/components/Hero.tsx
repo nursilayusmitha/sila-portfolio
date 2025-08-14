@@ -53,9 +53,9 @@ const Hero = () => {
   return (
     <div className="relative h-screen w-full overflow-hidden">
       {/* Globe di background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <GridGlobe />
-      </div>
+      <div className="absolute inset-0 z-0">
+  <GridGlobe />
+</div>
 
       {/* Spotlight */}
       <div className="absolute inset-0 z-10 pointer-events-none">
