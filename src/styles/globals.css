@@ -109,6 +109,19 @@
   animation-delay: 0.1s; /* Small delay to ensure render */
 }
 
+/* Default kecepatan (desktop & besar) */
+.tech-scroll-container {
+  animation: scroll-tech 20s linear infinite;
+}
+
+/* HP & Tablet (maks 767px) → perlambat 25% (jadi 20s) */
+@media (max-width: 767px) {
+  .tech-scroll-container {
+    animation-duration: 30s !important;
+  }
+}
+
+
 
 .bento-grid {
   display: grid;

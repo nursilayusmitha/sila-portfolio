@@ -148,19 +148,23 @@ const Work = () => {
 </div>
 
       {/* Draggable modals */}
-      {openModals.map(modal => (
-  <DraggableModal
-    key={modal.id}
-    {...modal}
-    isActive={activeModal === modal.id}
-    onClose={() => closeModal(modal.id)}
-    onFocus={() => openModal(modal)}
-    onItemClick={(item: any) => { // ✅ tambahkan : any
-      playOpenSound();
-      setDetailModal(item);
-    }}
-  />
-))}
+<div className="fixed inset-0 z-[9999] pointer-events-none">
+  {openModals.map(modal => (
+    <div key={modal.id} className="pointer-events-auto">
+      <DraggableModal
+        {...modal}
+        isActive={activeModal === modal.id}
+        onClose={() => closeModal(modal.id)}
+        onFocus={() => openModal(modal)}
+        onItemClick={(item: any) => {
+          playOpenSound();
+          setDetailModal(item);
+        }}
+      />
+    </div>
+  ))}
+</div>
+
 
 
       {/* Detail modal */}
