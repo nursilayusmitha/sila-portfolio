@@ -1,40 +1,86 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎮 Nursila Yusmitha — Portfolio Website
 
-## Getting Started
+Welcome to my personal portfolio repository! 🚀  
+This website is a **fusion of retro game vibes** (pixel borders, playful animations, game-like interactions) with **modern technology** for a professional, smooth, and interactive experience.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎥 Demo Preview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Here’s a quick look at the portfolio in action:  
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+![Portfolio Demo](./public/assets/demo.gif)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+---
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## ✨ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- ⚡ [Next.js 13+](https://nextjs.org/) — React framework with App Router  
+- 🎨 [Tailwind CSS](https://tailwindcss.com/) — Utility-first styling  
+- 🌗 [next-themes](https://github.com/pacocoursey/next-themes) — Theme switcher (Light/Dark)  
+- 🌀 [Lenis](https://lenis.studiofreight.com/) — Smooth scrolling engine  
+- 🎭 [Framer Motion](https://www.framer.com/motion/) — Animations & transitions  
+- 🔤 [Google Fonts: Pixelify](https://fonts.google.com/specimen/Pixelify+Sans) — Pixel retro typography  
+- 🖼️ [React Icons](https://react-icons.github.io/react-icons/) — Consistent icon set  
+- 🦆 Custom assets — Pixel duck GIFs, pixel assets, sound effects  
+- 🎵 Audio — Interactive sound effects (click, notification, background music)  
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🎯 Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 🕹️ **Retro x Modern UI**  
+  Pixel-inspired design with bold borders, shadows, and arcade-style fonts fused with modern responsive layouts.  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- 🌗 **Theme Toggle**  
+  Switch between **Light** and **Dark** mode with smooth transitions.  
 
-## Deploy on Vercel
+- 🦆 **Interactive Pixel Duck**  
+  A floating duck character that can toggle & control background music.  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 🔊 **Sound Feedback**  
+  Playful sound effects triggered by actions (e.g., downloading CV, clicking buttons).  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- ✨ **Dynamic Hero Section**  
+  Typewriter + animated text effects with spotlight visuals.  
+
+- 🖥️ **Responsive & Smooth UX**  
+  Works across devices with buttery smooth scrolling.  
+
+- 📂 **Portfolio Sections**
+  - Home
+  - About Me
+  - Certificates
+  - Work Showcase    
+  - FAQs  
+  - Contact
+
+- 🎨 **Creative Blend**  
+  Not purely retro — a **hybrid of old-school game aesthetics and modern technology**.  
+
+---
+
+## 👩‍💻 About Me
+
+Hi, I’m **Nursila Yusmitha** 👋  
+I’m a **Web Developer & Creative Technologist** who loves blending **code, design, and art** into interactive experiences.
+
+My areas of interest include:  
+
+- 🌐 Fullstack Web Development  
+- 🎨 Graphic Design & Illustration  
+- 🎬 Video Editing & Animation  
+
+💡 *“Technology should not only function — it should inspire.”*
+
+---
+
+## 📫 Contact
+
+- 🌍 Website: [nursila-portfolio](https://nursila-portfolio.vercel.app/)
+- 💼 LinkedIn: [linkedin.com/in/nursilayusmitha](https://linkedin.com/in/nursilayusmitha)  
+- 📧 Email: [nursilayusmitha@gmail.com](mailto:nursilayusmitha@gmail.com)  
+
+---
+
+⭐ If you enjoy this project, don’t forget to **star the repo**!

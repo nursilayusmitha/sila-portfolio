@@ -90,7 +90,7 @@ const Hero = () => {
 
           {/* Download CV */}
           <a
-            href="/CV_NursilaYusmitha.pdf"
+            href="/CV_Nursila_Yusmitha.pdf"
             download
             target="_blank"
             rel="noopener noreferrer"
