@@ -224,17 +224,23 @@ function GlobeWithControls({
         <Globe globeConfig={globeConfig} data={data} />
       </group>
       <OrbitControls
-        ref={controlsRef}
-        enablePan={false}
-        enableZoom={false}
-        minDistance={cameraZ}
-        maxDistance={cameraZ}
-        autoRotate
-        autoRotateSpeed={1}
-        enableRotate={true} // rotate selalu aktif, tapi pointer-events dibatasi di GridGlobe
-        minPolarAngle={Math.PI / 3.5}
-        maxPolarAngle={Math.PI - Math.PI / 3}
-      />
+  ref={controlsRef}
+  enablePan={false}
+  enableZoom={false}
+  minDistance={cameraZ}
+  maxDistance={cameraZ}
+  autoRotate
+  autoRotateSpeed={0.5}
+  enableRotate={true}
+  minPolarAngle={Math.PI / 3.5}
+  maxPolarAngle={Math.PI - Math.PI / 3}
+  enableDamping={true}
+  dampingFactor={0.05}
+  rotateSpeed={1.2}
+  onStart={() => (controlsRef.current.autoRotate = false)}
+  onEnd={() => (controlsRef.current.autoRotate = true)}
+/>
+
     </>
   );
 }
@@ -243,9 +249,11 @@ export function World(props: WorldProps & { globeScale?: number }) {
   const { globeConfig, globeScale = 1, data } = props;
   return (
     <Canvas
-  className="absolute inset-0" // ⛔ hapus pointer-events-none
+  dpr={[1, 1.5]}
+  className="absolute inset-0 touch-none"  // ✅ pakai Tailwind (touch-none = touch-action: none)
   camera={new PerspectiveCamera(50, window.innerWidth / window.innerHeight, 180, 1800)}
 >
+
   <GlobeWithControls globeConfig={globeConfig} globeScale={globeScale} data={data} />
 </Canvas>
 
