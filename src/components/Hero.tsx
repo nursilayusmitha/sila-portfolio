@@ -1,4 +1,3 @@
-// components/Hero.tsx
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import { FaLocationArrow } from "react-icons/fa6";
@@ -13,6 +12,11 @@ import DownloadIconDark from "../icons/downloaddark.svg";
 
 const Hero = () => {
   const { resolvedTheme } = useTheme();
+
+  // ✅ Fix: tunggu sampai theme kebaca
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const positions = [
     "Web Developer",
     "Backend Developer",
@@ -24,16 +28,16 @@ const Hero = () => {
     "Illustrator"
   ];
 
-  const themeIcon = resolvedTheme === "dark"
-  ? DownloadIconLight
-  : resolvedTheme === "light"
-    ? DownloadIconDark
-    : DownloadIconLight;
+  // Pilih icon sesuai theme (tapi hanya setelah mounted)
+  const themeIcon = !mounted
+    ? DownloadIconLight
+    : resolvedTheme === "dark"
+      ? DownloadIconLight
+      : DownloadIconDark;
 
   // State untuk sound effect
   const [clickSound, setClickSound] = useState<HTMLAudioElement | null>(null);
-  
-  // Inisialisasi sound effect
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const sound = new Audio("/sounds/notification.mp3");
@@ -42,7 +46,6 @@ const Hero = () => {
     }
   }, []);
 
-  // Fungsi untuk memutar suara
   const playSound = () => {
     if (clickSound) {
       clickSound.currentTime = 0;
@@ -54,23 +57,14 @@ const Hero = () => {
     <div className="relative h-screen w-full overflow-hidden">
       {/* Globe di background */}
       <div className="absolute inset-0 z-0">
-  <GridGlobe />
-</div>
+        <GridGlobe />
+      </div>
 
       {/* Spotlight */}
       <div className="absolute inset-0 z-10 pointer-events-none">
-        <Spotlight
-          className="-top-40 -left-10 md:-left-32 md:-top-20"
-          fill={"#FFD700"}
-        />
-        <Spotlight
-          className="top-10 left-full h-[80vh] w-[50vw]"
-          fill={"#FFA500"}
-        />
-        <Spotlight 
-          className="left-80 top-28 h-[80vh] w-[50vw]" 
-          fill={"#FF69B4"} 
-        />
+        <Spotlight className="-top-40 -left-10 md:-left-32 md:-top-20" fill={"#FFD700"} />
+        <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill={"#FFA500"} />
+        <Spotlight className="left-80 top-28 h-[80vh] w-[50vw]" fill={"#FF69B4"} />
       </div>
 
       {/* Konten teks */}
@@ -79,7 +73,7 @@ const Hero = () => {
           <p className="uppercase tracking-widest text-xs 576:text-sm text-center text-blue-950 dark:text-blue-100 max-w-80 font-interRegular">
             WE SHOULD KNOW EACH OTHER
           </p>
-          
+
           <div className="flex flex-col items-center">
             <TextGenerateEffect
               words="Hi! I'm Nursila Yusmitha."
@@ -87,28 +81,27 @@ const Hero = () => {
               highlightIndices={[2, 3]}
               highlightClass={'text-[#ffee5e]'}
             />
-            
+
             <TypewriterEffect
               positions={positions}
               className="text-2xl 420:text-3xl 550:text-4xl 700:text-5xl 800:text-6xl 1000:text-7xl font-pixelify mt-1"
             />
           </div>
 
-          {/* TAMBAHKAN ONCLICK UNTUK PLAY SOUND */}
-          <a 
-            href="/CV_NursilaYusmitha.pdf" 
-            download 
-            target="_blank" 
+          {/* Download CV */}
+          <a
+            href="/CV_NursilaYusmitha.pdf"
+            download
+            target="_blank"
             rel="noopener noreferrer"
             className="mt-8 pointer-events-auto"
-            onClick={playSound} // <<== TAMBAHKAN INI
+            onClick={playSound}
           >
             <MagicButton
               title="Download CV"
               icon={themeIcon}
               position="right"
               iconSize={18}
-              iconClass="text-blue-500"
               otherClasses="mt-4"
             />
           </a>
