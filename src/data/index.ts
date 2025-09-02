@@ -382,6 +382,20 @@ export const workCategories = [
           "https://nursilayusmitha.github.io/my-assets/work/Development/work/figma-portfolio.png",
         ]
       },
+      {
+        id: 12,
+        title: "Creative Portfolio 2025",
+        thumbnail: "https://nursilayusmitha.github.io/my-assets/work/Development/creative-portofolio.png",
+        category: "Web Design",
+        desc: "A curated showcase of my work as a Web Developer and Creative Technologist, blending development with design and storytelling. From web applications to creative visuals and multimedia, each project reflects my belief that technology should not only work — it should connect, inspire, and create meaningful experiences.",
+        time: "A day",
+        tools: ["Canva"],
+        images: [
+          "https://nursilayusmitha.github.io/my-assets/work/Development/work/creative-portfolio.png",
+        ],
+        link: "https://ppbungeoppang.my.canva.site/",
+        link5:"https://drive.google.com/file/d/1yE3a7qrgxpRPMDyh2btruMcuvvCaCvAp/view?usp=sharing"
+      },
     ]
   },
   {
@@ -441,7 +455,7 @@ export const workCategories = [
         id: 4,
         title: "WELLWIN Banner",
         thumbnail: "https://nursilayusmitha.github.io/my-assets/work/Design/wellwin.png",
-        category: "Freelance Activity",
+        category: "What I've done",
         desc: "I had the pleasure of creating a brand banner for WELLWIN, a local business specializing in welding, fences, canopy fabrication, and much more. The design was crafted to reflect their craftsmanship and professionalism, helping them attract more customers in the community.",
         time: "Several minutes",
         tools: ["Canva"],
@@ -453,7 +467,7 @@ export const workCategories = [
         id: 5,
         title: "Kania Farma Banner",
         thumbnail: "https://nursilayusmitha.github.io/my-assets/work/Design/kania-farma.png",
-        category: "Freelance Activity",
+        category: "What I've done",
         desc: "This project involved designing a professional banner for Kania Farma pharmacy. My goal was to create a clean, trustworthy, and easily recognizable visual identity that would help the pharmacy stand out and communicate a sense of reliability to its customers.",
         time: "1 Hour",
         tools: ["Canva"],
@@ -465,12 +479,99 @@ export const workCategories = [
         id: 6,
         title: "INDOMARET Poster",
         thumbnail: "https://nursilayusmitha.github.io/my-assets/work/Design/indomaret.png",
-        category: "Freelance Activity",
+        category: "What I've done",
         desc: "I designed a promotional poster for a coloring competition held at Indomaret. The poster was created to be fun and engaging, with the aim of attracting children and families to participate and drive foot traffic to the store.",
         time: "Several minutes",
         tools: ["Canva"],
         images: [
           "https://nursilayusmitha.github.io/my-assets/work/Design/indomaret.png"
+        ],
+      },
+      {
+        id: 7,
+        title: "Dream Car Poster",
+        thumbnail: "https://nursilayusmitha.github.io/my-assets/work/Design/dream-car.png",
+        category: "What I've done",
+        desc: "I designed a vibrant and imaginative poster showcasing a dream car of mine. The design was created to inspire and captivate viewers, highlighting the sleek and futuristic features of the vehicle.",
+        time: "Several minutes",
+        tools: ["Adobe Photoshop"],
+        images: [
+          "https://nursilayusmitha.github.io/my-assets/work/Design/dream-car.png"
+        ],
+      },
+      {
+        id: 8,
+        title: "Burger Sale Poster",
+        thumbnail: "https://nursilayusmitha.github.io/my-assets/work/Design/burger-sale.png",
+        category: "What I've done",
+        desc: "I designed a promotional poster for a burger sale event. The poster was created to be eye-catching and appetizing, with the aim of attracting customers to boosting sales.",
+        time: "Several minutes",
+        tools: ["Adobe Photoshop"],
+        images: [
+          "https://nursilayusmitha.github.io/my-assets/work/Design/burger-sale.png",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/burger-saleid.png"
+        ],
+      },
+      {
+        id: 9,
+        title: "Scrapbook Template",
+        thumbnail: "https://nursilayusmitha.github.io/my-assets/work/Design/scrapbook1.png",
+        category: "What I've done",
+        desc: "I created a scrapbook template that allows users to easily customize and create their own scrapbook pages. The template features a playful design with various elements that can be mixed and matched.",
+        time: "About 2 hours",
+        tools: ["Adobe Photoshop"],
+        images: [
+          "https://nursilayusmitha.github.io/my-assets/work/Design/scrapbook-template.png",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/scrapbook1.png",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/scrapbook2.png",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/scrapbook3.png",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/scrapbook4.png",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/scrapbook5.png"
+        ],
+      },
+      {
+        id: 10,
+        title: "Best Seller Poster",
+        thumbnail: "https://nursilayusmitha.github.io/my-assets/work/Design/mixue-bestseller.png",
+        category: "What I've done",
+        desc: "I designed a promotional poster for a best-selling product at Mixue. The poster was created to be visually appealing.",
+        time: "Several minutes",
+        tools: ["Canva"],
+        images: [
+          "https://nursilayusmitha.github.io/my-assets/work/Design/mixue-bestseller.png"
+        ],
+      },
+      {
+        id: 11,
+        title: "T-Shirt Design",
+        thumbnail: "https://nursilayusmitha.github.io/my-assets/work/Design/cover-sweet.png",
+        category: "What I've done",
+        desc: "I designed a T-shirt graphic that showcases a unique and eye-catching design. The graphic was created to appeal to a wide audience.",
+        time: "About 2 hours",
+        tools: ["Canva"],
+        images: [
+          "https://nursilayusmitha.github.io/my-assets/work/Design/cover-sweet.png",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/sweet1.png",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/sweet2.png",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/sweet3.png",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/sweet4.png"
+        ],
+      },
+      {
+        id: 11,
+        title: "Sweatwear Design",
+        thumbnail: "https://nursilayusmitha.github.io/my-assets/work/Design/cover-chaos.jpg",
+        category: "What I've done",
+        desc: "I designed a sweatwear graphic that showcases a unique and eye-catching design. The graphic was created to appeal to a wide audience.",
+        time: "About 2 hours",
+        tools: ["Canva"],
+        images: [
+          "https://nursilayusmitha.github.io/my-assets/work/Design/cover-chaos.jpg",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/chaos1.jpg",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/chaos2.jpg",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/chaos3.jpg",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/chaos4.jpg",
+          "https://nursilayusmitha.github.io/my-assets/work/Design/chaos5.jpg"
         ],
       },
     ]

@@ -167,6 +167,18 @@ const WorkDetailModal = ({ item, onClose }: any) => {
                     </a>
                   </div>
                 )}
+                {item.link5 && (
+                  <div className="mb-2 400:mb-3 576:mb-4">
+                    <a 
+                      href={item.link5} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-xs 400:text-sm 576:text-base text-purple-600 dark:text-white hover:underline inline-flex items-center"
+                    >
+                      View on GDrive as PDF ↗
+                    </a>
+                  </div>
+                )}
                 
                 <h3 className="text-sm 400:text-base 576:text-lg font-semibold text-gray-700 dark:text-white">Duration</h3>
                 <p className="text-xs 400:text-sm 576:text-base text-gray-600 dark:text-gray-200 mb-2 400:mb-3 576:mb-4">{item.time}</p>
