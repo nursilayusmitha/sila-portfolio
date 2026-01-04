@@ -4,6 +4,7 @@ import { ScrollProvider } from "@/contexts/ActiveSectionContext";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react"; // ✅ gunakan /react, bukan /next
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -21,9 +22,31 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <title>Nursila Yusmitha | Portfolio</title>
       </Head>
+
       <ThemeProvider attribute="class" defaultTheme="dark">
         <ScrollProvider>
           <Component {...pageProps} />
+
+          {/* Live Chat Widget */}
+          <Script id="livechat-config" strategy="afterInteractive">
+            {`
+              window.LiveChatConfig = {
+                businessId: "cmjlcmqgg000it9wb45uizayd",
+                apiUrl: "https://api.sentinelhub.ai",
+                primaryColor: "#60A5FA",
+                secondaryColor: "#1E40AF",
+                position: "bottom-right",
+                fontFamily: "Inter, system-ui, sans-serif",
+                fontColor: "#333333",
+                fontSize: "14px"
+              };
+            `}
+          </Script>
+          <Script
+            src="https://api.sentinelhub.ai/widget/live-chat-widget.js"
+            strategy="afterInteractive"
+          />
+
           <Analytics /> {/* ✅ panggil di sini */}
         </ScrollProvider>
       </ThemeProvider>
