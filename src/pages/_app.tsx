@@ -33,9 +33,11 @@ export default function App({ Component, pageProps }: AppProps) {
               window.LiveChatConfig = {
                 businessId: "cmjlcmqgg000it9wb45uizayd",
                 apiUrl: "https://api.sentinelhub.ai",
+                // Customization
                 primaryColor: "#60A5FA",
                 secondaryColor: "#1E40AF",
-                position: "bottom-right",
+                position: "bottom-left",
+                iconUrl: "https://api.sentinelhub.ai/storage/files/widgets/cmjlcmqgg000it9wb45uizayd/icon-1767572767280.png"
                 fontFamily: "Inter, system-ui, sans-serif",
                 fontColor: "#333333",
                 fontSize: "14px"
